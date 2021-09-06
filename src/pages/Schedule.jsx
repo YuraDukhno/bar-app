@@ -1,5 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Schedule() {
-  return <div>Schedule</div>;
+  const { t } = useTranslation();
+
+  return <div>{t("description.Schedule")}</div>;
 }

@@ -1,5 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function SignIn() {
-  return <div>SignIn</div>;
+  const { t } = useTranslation();
+
+  return <div>{t("description.Sign In")}</div>;
 }
