@@ -13,6 +13,8 @@ import { menuData } from "../utils/menuData";
 import { Box, ButtonGroup } from "@material-ui/core";
 import { ToggleButtonGroup } from "@material-ui/lab";
 import { useTranslation, Trans } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import setSideBar from "../redux/appReducer";
 
 const lngs = {
   en: { nativeName: "en" },
@@ -35,6 +37,11 @@ export default function Header() {
   const classes = useStyles();
   const history = useHistory();
   const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
+
+  const setSideBar = () => {
+    dispatch({ type: "SHOW_SIDEBAR", payload: true });
+  };
 
   const closeHandler = path => {
     history.push(path);
@@ -81,31 +88,16 @@ export default function Header() {
               ))}
             </ToggleButtonGroup>
           </ButtonGroup>
-          <IconButton
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          {/* <Button color="inherit">
-            <Link to="/Tips">tips</Link>
-          </Button>
-          <Button color="inherit">
-            <Link to="/Staff">staff</Link>
-          </Button>
-          <Button color="inherit">
-            <Link to="/Schedule"></Link>schedule
-          </Button>
-          <Button color="inherit">
-            <Link to="/Main"></Link>main
-          </Button>
-          <Button color="inherit">
-            <Link to="/SignUp"></Link>sign up
-          </Button>
-          <Button color="inherit">
-            <Link to="/SignIn"></Link>sign in
-          </Button> */}
+          <Box display={{ xs: "block", md: "none" }}>
+            <IconButton
+              onClick={() => setSideBar()}
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+            >
+              <MenuIcon />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
     </AppBar>

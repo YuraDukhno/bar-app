@@ -5,6 +5,7 @@ import { theme } from './utils/useStyles'
 import Header from "./components/Header"
 import AppRouter from "./components/AppRouter"
 import { useTranslation, Trans } from "react-i18next";
+import SideBar from './components/SideBar';
 
  const lngs = {
    en: { nativeName: "English" },
@@ -12,8 +13,6 @@ import { useTranslation, Trans } from "react-i18next";
  };
 
 function App() {
-
- 
 
   const { t, i18n } = useTranslation();
 
@@ -23,6 +22,7 @@ function App() {
           <Header />
           <main className="App-main">
             <AppRouter />
+            <SideBar />
           </main>
         </div>
     </ThemeProvider>
