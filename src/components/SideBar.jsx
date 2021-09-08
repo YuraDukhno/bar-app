@@ -28,7 +28,7 @@ export default function SideBar() {
   const dispatch = useDispatch();
   const sideBar = useSelector(state => state.sideBar);
   console.log("sideBar", sideBar);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const history = useHistory();
   const classes = useStyles();
 
@@ -44,7 +44,7 @@ export default function SideBar() {
       anchor="right"
       open={sideBar}
       classes={{ paper: classes.paper }}
-      // onClose={() => setSideBar(false)}
+      onClose={() => dispatch({ type: "SHOW_SIDEBAR", payload: false })}
     >
       <Button
         onClick={() => dispatch({ type: "SHOW_SIDEBAR", payload: false })}
@@ -62,7 +62,9 @@ export default function SideBar() {
           // onClick={() => dispatch(setSideBar(false))}
         >
           {menuData.map(item => (
-            <Button>{t(item.title)}</Button>
+            <Button onClick={() => closeHandler(item.path)}>
+              {t(`description.${item.title}`)}
+            </Button>
           ))}
         </ButtonGroup>
       </Box>
